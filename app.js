@@ -1,10 +1,35 @@
 const inquirer = require('inquirer');
-const fs = require ('fs');
+const fs = require('fs');
 
-const Engineer = require("./js/engineer");
+const Employee = require("./lib/employee");
 
-const Employee = require("./js/employee");
-
-const Intern = require("./js/intern");
-
-const Manager = require("./js/manager")
+function employeePrompt() {
+    inquirer
+        .prompt([
+            {
+                type: "input",
+                message: "Intern, manager, or emgineer?",
+                name: "title",
+                // choices: ["Employee", "Intern", "Manager", "Engineer"]
+            },
+            {
+                type: "input",
+                message: "Name:",
+                name: "name"
+            },
+            {
+                type: "input",
+                message: "Email address:",
+                name: "email"
+            },
+            {
+                type: "number",
+                message: "ID:",
+                name: "id"
+            }
+        ]).then(response => {
+        
+            const userResponse = response;
+            employee = new Employee(userResponse.name, userResponse.title, userResponse.email, userResponse.id)
+        })
+    }
